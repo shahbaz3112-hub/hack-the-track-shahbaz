@@ -1,0 +1,28 @@
+# Core Python Data Stack
+pandas
+numpy
+scipy
+
+# Visualization
+matplotlib
+seaborn
+plotly
+
+# Machine Learning / Modeling
+scikit-learn
+xgboost
+
+# Big Data
+pyspark
+
+# Dashboard / App Layer
+streamlit
+dash
+
+# Jupyter Environment
+notebook
+jupyterlab
+
+# Orchestration / Utilities
+apache-airflow==2.9.0   
+python-dotenv           
