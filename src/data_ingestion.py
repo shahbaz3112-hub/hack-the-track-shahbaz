@@ -1,12 +1,12 @@
 import pandas as pd
 
-def load_data(path, chunksize=10000):
+def load_data(path, chunk_size=10000):
     """
     Load race lap data from CSV in chunks and concatenate.
     """
     print(f"📥 Loading data from {path}...")
     chunks = []
-    for chunk in pd.read_csv(path, chunksize=chunksize):
+    for chunk in pd.read_csv(path, chunksize=chunk_size):
         chunks.append(chunk)
     df = pd.concat(chunks, ignore_index=True)
     return df
@@ -35,9 +35,9 @@ def ingest_pipeline(path):
     """
     Full ingestion pipeline: load, clean, feature engineer.
     """
-    print("Calling ingest_pipeline...")
-    print(f"Loading data from {path}...")
-    # df = load_data(path)
+    print("Inside ingest_pipeline function")
+    print(f"Loading data from path: {path}")
+    df = load_data(path)
     # df = clean_time_columns(df)
     # df = add_features(df)
-    # return df
+    return df
