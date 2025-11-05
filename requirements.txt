@@ -4,25 +4,26 @@ numpy
 scipy
 
 # Visualization
-matplotlib
-seaborn
 plotly
 
 # Machine Learning / Modeling
-scikit-learn
-xgboost
+scikit-learn==1.3.2
+joblib
 
 # Big Data
 pyspark
 
 # Dashboard / App Layer
 streamlit
-dash
 
 # Jupyter Environment
 notebook
 jupyterlab
 
 # Orchestration / Utilities
-apache-airflow==2.9.0   
-python-dotenv           
+apache-airflow==2.9.0
+python-dotenv
+
+# Optional Dev Tools
+pytest
+flake8         
