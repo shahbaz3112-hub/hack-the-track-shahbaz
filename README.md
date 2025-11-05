@@ -54,8 +54,18 @@ streamlit run src/dashboard.py
 ```
 
 ## 📊 Dashboard Features
-- Lap Time Trends: Visualize lap-by-lap performance
-- Sector Analysis: Compare S1, S2, S3 times
-- Pit Stop Detection: Flag laps with large deltas
-- Predicted vs Actual Lap Time: Overlay model predictions
-- Anomaly Detection: Highlight outlier laps
+- **Lap Time Trends**: Visualize lap-by-lap performance for each driver
+- **Sector Analysis**: Compare S1, S2, S3 times across laps
+- **Pit Stop Detection**: Flag laps with missing sectors or unusually long lap times
+- **Predicted vs Actual Lap Time**: Overlay model predictions and compute prediction error
+- **Lap Delta Tracking**: Show lap-to-lap time differences to highlight performance shifts
+- **Anomaly Detection**: Identify outlier laps using dynamic thresholds and prediction deviation
+- **Driver Filtering**: Select individual drivers to explore personalized lap insights
+- **Fastest Lap Highlighting**: Automatically detect and mark each driver's fastest lap
+
+## 🧠 What's Next
+
+- Add driver-to-driver comparison view
+- Visualize anomaly categories (e.g., pit stop, prediction miss)
+- Export driver reports as PDF
+- Integrate telemetry data for richer insights
