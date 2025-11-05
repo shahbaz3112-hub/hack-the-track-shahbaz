@@ -5,17 +5,19 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error, r2_score
 
 def prepare_model_data(df):
-    """
-    Select features and target for lap time prediction.
-    """
-    features = [
-        "S1", "S2", "S3",
-        "S1a", "S1b", "S2a", "S2b", "S3a", "S3b",
-        "Sector Ratio", "Subsector StdDev"
-    ]
-    df = df.dropna(subset=features + ["Lap Time"])
-    X = df[features]
-    y = df["Lap Time"]
+    features = ["S1", "S2", "S3"]
+    target = "Lap Time"
+
+    # Drop rows with missing values in features or target
+    df_model = df.dropna(subset=features + [target])
+
+    # Optional: Filter out extreme lap times (e.g., > 300 seconds)
+    df_model = df_model[df_model[target] < 300]
+
+    X = df_model[features]
+    y = df_model[target]
+
+    print(f"✅ Modeling data shape: {X.shape}")
     return X, y
 
 def train_model(X, y, model_type="linear"):
@@ -42,14 +44,10 @@ def train_model(X, y, model_type="linear"):
     return model, metrics
 
 def predict_lap_time(model, input_df):
-    """
-    Predict lap time for new data.
-    """
-    features = [
-        "S1", "S2", "S3",
-        "S1a", "S1b", "S2a", "S2b", "S3a", "S3b",
-        "Sector Ratio", "Subsector StdDev"
-    ]
+    candidate_features = ["S1", "S2", "S3", "Sector Ratio", "Subsector StdDev"]
+    features = [col for col in candidate_features if col in input_df.columns]
+
     input_df = input_df.dropna(subset=features)
-    predictions = model.predict(input_df[features])
+    X = input_df[features]
+    predictions = model.predict(X)
     return predictions

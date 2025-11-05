@@ -7,15 +7,19 @@ TIME_COLUMNS = [
     "S1a", "S1b", "S2a", "S2b", "S3a", "S3b"
 ]
 
-def convert_time_to_seconds(df, cols):
+def convert_to_seconds(time_str):
     """
-    Convert time strings (e.g., '01:02.8') to seconds.
-    Handles '--' and missing values.
+    Convert time string like '2:13.572' to float seconds.
     """
-    for col in cols:
-        if col in df.columns:
-            df[col] = pd.to_timedelta(df[col].replace("--", pd.NA), errors='coerce').dt.total_seconds()
-    return df
+    try:
+        if ":" in time_str:
+            minutes, seconds = time_str.split(":")
+            return float(minutes) * 60 + float(seconds)
+        else:
+            return float(time_str)
+    except:
+        return pd.NA
+
 
 def engineer_features(df):
     """
@@ -70,14 +74,26 @@ def drop_unused_columns(df):
     return df
 
 def preprocess_pipeline(df):
-    """
-    Full preprocessing pipeline.
-    """
-    df = convert_time_to_seconds(df, TIME_COLUMNS)
-    df = engineer_features(df)
-    if "drivers" in df.columns:
-        df = parse_json_column(df, "drivers")
-    df = fallback_driver_name(df)
-    df = normalize_metadata(df)
-    df = drop_unused_columns(df)
+    # Replace placeholders
+    df.replace(["--", "N/A", "NaN", ""], pd.NA, inplace=True)
+
+    # Convert time strings to seconds
+    for col in ["S1", "S2", "S3", "Lap Time"]:
+        df[col] = df[col].apply(convert_to_seconds)
+
+    # Create 'DriverName' column
+    df["DriverName"] = df["FirstName"].fillna("") + " " + df["LastName"].fillna("")
+    
+    # Drop rows missing key features
+    df = df.dropna(subset=["S1", "S2", "S3", "Lap Time"])
+     # Add lap counter per driver
+    df["Laps"] = df.groupby("DriverName").cumcount() + 1
+    # Create synthetic Pit Stop flag based on Lap Time spikes or missing sectors
+    df["Pit Stop"] = df.apply(
+    lambda row: (
+        pd.isna(row["S1"]) or pd.isna(row["S2"]) or pd.isna(row["S3"]) or row["Lap Time"] > 100
+        ),
+        axis=1
+    )
+
     return df
