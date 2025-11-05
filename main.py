@@ -2,8 +2,8 @@ from src.data_ingestion import ingest_pipeline
 from src.preprocessing import preprocess_pipeline
 from src.modeling import prepare_model_data, train_model, predict_lap_time
 
-input_file_path = r"D:\Hackathon\HackTheTrack\Dataset\race_data\Qualifying1-6-Laps.csv"
-target_file_path = r"D:\Hackathon\HackTheTrack\Dataset\race_data\processed_race_data.csv"
+input_file_path = r"data\Qualifying1-6-Laps.csv"
+target_file_path = r"data\processed_race_data.csv"
 
 # Step 1: Load and preprocess data
 print("******************************* Starting Data Ingestion ******************************")
