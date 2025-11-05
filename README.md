@@ -14,6 +14,7 @@ It combines historical race data, predictive modeling, and an interactive dashbo
 
 ## 🧱 Project Structure
 
+```bash
 racing-dashboard/
 │
 ├── data/                      # Raw and processed datasets
@@ -30,7 +31,7 @@ racing-dashboard/
 ├── main.py                    # Runner script
 ├── requirements.txt           # Dependencies
 └── README.md                  # Project documentation
-
+```
 ## 🚀 Getting Started
 
 To set up the project locally:
