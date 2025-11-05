@@ -45,7 +45,6 @@ threshold = error.mean() + 2 * error.std()
 clean_df["AnomalyFlag"] = error > threshold
 
 # Step 6: Save processed data for dashboard
-
 # Define desired columns
 desired_columns = ["DriverName", "Laps", "S1", "S2", "S3", "Lap Time", "Predicted Lap Time", "Lap Delta", "Pit Stop", "AnomalyFlag"]
 # Filter only those that exist in the dataframe
