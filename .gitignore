@@ -1,4 +1,17 @@
-__pycache__/
-*.pyc
+# Python virtual environments
 venv/
 .env/
+
+# Byte-compiled / cache files
+_pycache_/
+*.py[cod]
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Streamlit config
+.streamlit/
+
+# OS-specific
+.DS_Store
+Thumbs.db
