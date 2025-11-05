@@ -29,8 +29,8 @@ if X.empty or y.empty:
 
 # Step 3: Train model
 model, metrics = train_model(X, y, model_type="random_forest")
-print("✅ Model trained")
-print("📊 Performance Metrics:", metrics)
+print("Model trained")
+# print("📊 Performance Metrics:", metrics)
 
 # Step 4: Predict lap times
 predictions = predict_lap_time(model, clean_df)
