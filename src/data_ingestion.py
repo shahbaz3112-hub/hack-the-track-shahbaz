@@ -1,15 +1,27 @@
 import pandas as pd
+import glob
+import os
 
-def load_data(path, chunk_size=10000):
+def load_data(folder_path, chunk_size=10000):
     """
-    Load race lap data from CSV in chunks and concatenate.
+    Load and concatenate all CSV files from the given folder using chunked reading.
     """
-    print(f"📥 Loading data from {path}...")
+    print(f"📥 Loading data from folder: {folder_path}")
+    all_files = glob.glob(os.path.join(folder_path, "*.csv"))
+
+    if not all_files:
+        raise FileNotFoundError(f"No CSV files found in {folder_path}")
+
     chunks = []
-    for chunk in pd.read_csv(path, chunksize=chunk_size):
-        chunks.append(chunk)
+    for file in all_files:
+        print(f"🔍 Reading file: {file}")
+        for chunk in pd.read_csv(file, chunksize=chunk_size):
+            chunks.append(chunk)
+
     df = pd.concat(chunks, ignore_index=True)
+    print(f"✅ Total records loaded: {df.shape[0]}")
     return df
+
 
 def clean_time_columns(df):
     """

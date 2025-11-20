@@ -95,5 +95,4 @@ def preprocess_pipeline(df):
         ),
         axis=1
     )
-
     return df

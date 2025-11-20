@@ -29,7 +29,11 @@ def train_model(X, y, model_type="linear"):
     if model_type == "linear":
         model = LinearRegression()
     elif model_type == "random_forest":
-        model = RandomForestRegressor(n_estimators=100, random_state=42)
+        model = RandomForestRegressor(n_estimators=100,
+        max_depth=5,
+        min_samples_leaf=10,
+        random_state=42
+    )
     else:
         raise ValueError("Unsupported model type")
 
