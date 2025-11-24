@@ -1,4 +1,4 @@
-# 🏎️ RaceIQ: Racing Event Pre-Analysis Platform
+# 🏎️ RaceIQ: Racing Event Post-Analysis Platform
 
 ## 📌 Project Overview
 RaceIQ is a data engineering and analytics solution designed to deliver pre-analysis of racing events.  
