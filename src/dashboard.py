@@ -15,7 +15,7 @@ def load_data(path):
 
 def main():
     st.set_page_config(page_title="RaceIQ Dashboard", layout="wide")
-    st.title("🏎️ RaceIQ: Racing Pre-Analysis Dashboard")
+    st.title("🏎️ RaceIQ: Racing Post-Analysis Dashboard")
 
     file_path = r"output_data/processed_race_data.csv"
     df = load_data(file_path)
