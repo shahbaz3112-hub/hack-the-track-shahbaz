@@ -1,7 +1,7 @@
 # 🏎️ RaceIQ: Racing Event Post-Analysis Platform
 
 ## 📌 Project Overview
-RaceIQ is a data engineering and analytics solution designed to deliver pre-analysis of racing events.  
+RaceIQ is a data engineering and analytics solution designed to deliver post-analysis of racing events.  
 It combines historical race data, predictive modeling, and an interactive dashboard to help uncover patterns, optimize pit strategies, and forecast lap times.
 
 ## ⚙️ Tech Stack
@@ -17,17 +17,14 @@ It combines historical race data, predictive modeling, and an interactive dashbo
 ```bash
 racing-dashboard/
 │
-├── data/                      # Raw and processed datasets
-├── notebooks/                 # EDA and prototyping
+├── input_data/                # Raw datasets
+├── output_data/               # Processed dataset
 ├── src/                       # Core modules
+│   ├── modules/               # dashboard modules (for each tab)
 │   ├── data_ingestion.py      # Load and chunk large CSVs
 │   ├── preprocessing.py       # Clean, transform, and engineer features
 │   ├── modeling.py            # Train and evaluate lap time prediction models
 │   └── dashboard.py           # Streamlit dashboard app
-│
-├── dags/                      # Airflow DAGs (optional)
-│   └── racing_pipeline.py
-│
 ├── main.py                    # Runner script
 ├── requirements.txt           # Dependencies
 └── README.md                  # Project documentation
@@ -63,10 +60,11 @@ streamlit run src/dashboard.py
 - **Anomaly Detection**: Identify outlier laps using dynamic thresholds and prediction deviation
 - **Driver Filtering**: Select individual drivers to explore personalized lap insights
 - **Fastest Lap Highlighting**: Automatically detect and mark each driver's fastest lap
+- **driver-to-driver comparison view**: Compare between drivers on lap performance
+- **Export driver reports as PDF**: Export your driver result and driver to driver comparison results
 
 ## 🧠 What's Next
 
-- Add driver-to-driver comparison view
 - Visualize anomaly categories (e.g., pit stop, prediction miss)
-- Export driver reports as PDF
 - Integrate telemetry data for richer insights
+- Deploy it to actual servers/cloud to scale up and 100% dashboard availability for end users.
